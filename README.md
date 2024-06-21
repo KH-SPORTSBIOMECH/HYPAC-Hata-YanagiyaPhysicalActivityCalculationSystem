@@ -8,7 +8,7 @@ Use the sample.fit data and try this code.
 > **Import .fit data**
 
 In the .fit file, the coordinates (latitude and longitude) are represented in hexadecimal and encoded as 32-bit integers during export.
-"_decode_lat_long_" fuction is convert 32-bit integers to decimal the latitude and longitude.
+"_decode_lat_long_" fuction is convert 32-bit integers to decimal the latitude and longitude as bellow:
 
 ```python
 def GarminDataSet(file_path):
@@ -34,12 +34,13 @@ def decode_lat_long(int_value):
 > **Calculate the altitude from latitude and longitude**
 
 Most smartwatches can record altitude data, which is also stored in .fit files. However, the data can be inaccurate, especially when running in the weather. 
-This is probably because the altitude is calculated by the built-in barometric altimeter. Therefore, this code has adopted a mechanism to obtain altitude by referencing API data from the Geospatial Information Authority (GSI) in Japan via the Internet, based on latitude and longitude information recorded by GPS. Note that once over the network, the working speed would be busy. Also, since this program uses the API of the GSI in Japan, if you want to use it in another country, you will need to use the API of the GSI in your country or use a dataset with linked altitude and latitude/longitude data.
+This is probably because the altitude is calculated by the built-in barometric altimeter. Therefore, this code has adopted a mechanism to obtain altitude by referencing API data from the Geospatial Information Authority (GSI) in Japan via the Internet, based on latitude and longitude information recorded by GPS. Note that once over the network, the working speed would be busy. Also, since this program uses the API of the GSI in Japan, if you want to use it in another country, you will need to use the `API` of the GSI in your country or use a dataset with linked altitude and latitude/longitude data.
 
-"""
+```python
 def getAltitude(Latitude, Longitude):
     Altitude_list = []
     dAltitude_list = []
+    
     for i in trange(Latitude.size - 1):
         # Note again: It use the network, the operating speed would be busy. 
         API = "http://cyberjapandata2.gsi.go.jp/general/dem/scripts/getelevation.php/?lon=%s&lat=%s&outtype=%s" % (Longitude[i], Latitude[i], "JSON")
@@ -69,4 +70,7 @@ def getAltitude(Latitude, Longitude):
     dAltitude = Altitude.diff().fillna(0)
 
     return Altitude, dAltitude
-"""
+```
+
+Network errors may interrupt the programme.
+Increasing the value of `retries = 5` would solve it.
