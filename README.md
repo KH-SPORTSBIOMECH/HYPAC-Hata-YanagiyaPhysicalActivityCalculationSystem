@@ -5,8 +5,8 @@ In this program, we provide the estimation methods for the physical activity dur
 It needs a .fit file of walking and/or running. The .fit file is the activity data and can be obtained from some of the smart watch such as Garmin, Caros and thomething.
 Use the sample.fit data and try this code.
 
-** Usage
-> **Import .fit data**
+# Usage
+## > **Import .fit data**
 
 In the .fit file, the coordinates (latitude and longitude) are represented in hexadecimal and encoded as 32-bit integers during export.
 "_decode_lat_long_" fuction is convert 32-bit integers to decimal the latitude and longitude as bellow:
@@ -32,7 +32,7 @@ def decode_lat_long(int_value):
     return degrees
 ```
 
-> **Calculate the altitude from latitude and longitude**
+## > **Calculate the altitude from latitude and longitude**
 
 Most smartwatches can record altitude data, which is also stored in .fit files. However, the data can be inaccurate, especially when running in the weather. 
 This is probably because the altitude is calculated by the built-in barometric altimeter. Therefore, this code has adopted a mechanism to obtain altitude by referencing API data from the Geospatial Information Authority (GSI) in Japan via the Internet, based on latitude and longitude information recorded by GPS. Note that once over the network, the working speed would be busy. Also, since this program uses the API of the GSI in Japan, if you want to use it in another country, you will need to use the `API` of the GSI in your country or use a dataset with linked altitude and latitude/longitude data.
@@ -76,34 +76,23 @@ def getAltitude(Latitude, Longitude):
 Network errors may interrupt the programme.
 Increasing the value of `retries = 5` would solve it.
 
-> **Calculate the physical activities**
+## > **Calculate the physical activities**
 
 STEP1: Estimating the METs from walking and/or running speed (Fig.1)
 
 ```python
-  for i in trange(0, Velocity.size):
-        ### STEP1: Velocity ###################################################################################
-        """
-        Relationship between Velocity(km/h) x METs
-          y = 0.9638 * X - 0.191
-        Relationship between Velocity(km/h) x VO2
-          y = 3.3731 * X - 0.6684
-        """
-
-        def Velocity_METs(Velocity):
-            # Regression equation fractionated at low and high speed, 
-            # speed intersected is set at 8.689214 km/h from the relationship between lnMETs and running speed.
-            if Velocity < 8.689214: 
-                a = 0.2245
-                b = 0.2544
-                LnMETs = (a * Velocity + b)
-                METs = np.exp(LnMETs)
-            else: 
-                a = 0.0654
-                b = 1.6367
-                LnMETs = (a * Velocity + b)
-                METs = np.exp(LnMETs)
-            return float(METs)
+def Velocity_METs(Velocity):
+     if Velocity < 8.689214: 
+         a = 0.2245
+         b = 0.2544
+         LnMETs = (a * Velocity + b)
+         METs = np.exp(LnMETs)
+     else: 
+         a = 0.0654
+         b = 1.6367
+         LnMETs = (a * Velocity + b)
+         METs = np.exp(LnMETs)
+     return float(METs)
 ```
 
 ![LnMETs-Speed相関関係](https://github.com/KH-SPORTSBIOMECH/HYPAC-Physical-Activity-Calculator/assets/92411916/6dd928b4-858c-4e4d-aa68-f77afbdd843f)
@@ -111,5 +100,11 @@ STEP1: Estimating the METs from walking and/or running speed (Fig.1)
 **Fig.1 The relationship between ln(METs) and walking and/or running speed**
 
 The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 when the speed is 8.69 km/h.
-The regression equation for the approximate curve below 8.69 km/h speed was **ln(METs) = 0.2245 x speed + 0.2544**.
+
+The regression equation for the approximate curve below 8.69 km/h speed (grey) was `ln(METs) = 0.2245 x speed + 0.2544`.
 The coefficient of determination was R2 = 0.98.
+
+The regression equation for the approximate curve over 8.69 km/h speed (grey) was **ln(METs) = 0.0654 x speed + 1.6367**.
+The coefficient of determination was R2 = 0.99.
+
+*ln(): the natural logarithm
