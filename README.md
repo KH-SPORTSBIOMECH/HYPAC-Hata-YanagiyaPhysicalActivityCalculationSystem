@@ -5,7 +5,7 @@ In this program, we provide the estimation methods for the physical activity dur
 It needs a .fit file of walking and/or running. The .fit file is the activity data and can be obtained from some of the smart watch such as Garmin, Caros and thomething.
 Use the sample.fit data and try this code.
 
-**Usage
+** Usage
 > **Import .fit data**
 
 In the .fit file, the coordinates (latitude and longitude) are represented in hexadecimal and encoded as 32-bit integers during export.
@@ -107,7 +107,9 @@ STEP1: Estimating the METs from walking and/or running speed (Fig.1)
 ```
 
 ![LnMETs-Speed相関関係](https://github.com/KH-SPORTSBIOMECH/HYPAC-Physical-Activity-Calculator/assets/92411916/6dd928b4-858c-4e4d-aa68-f77afbdd843f)
-Fig.1 The relationship between ln(METs) and walking and/or running speed
+
+**Fig.1 The relationship between ln(METs) and walking and/or running speed**
+
 The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 when the speed is 8.69 km/h.
-The regression equation for the approximate curve below 8.69 km/h speed was **ln(METs) = 0.2245 * speed + 0.2544**.
+The regression equation for the approximate curve below 8.69 km/h speed was **ln(METs) = 0.2245 x speed + 0.2544**.
 The coefficient of determination was R2 = 0.98.
