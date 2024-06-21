@@ -9,7 +9,7 @@ Use the sample.fit data and try this code.
 ## > **Import .fit data**
 
 In the .fit file, the coordinates (latitude and longitude) are represented in hexadecimal and encoded as 32-bit integers during export.
-"_decode_lat_long_" fuction is convert 32-bit integers to decimal the latitude and longitude as bellow:
+`decode_lat_long` fuction is convert 32-bit integers to decimal the latitude and longitude as bellow:
 
 ```python
 def GarminDataSet(file_path):
