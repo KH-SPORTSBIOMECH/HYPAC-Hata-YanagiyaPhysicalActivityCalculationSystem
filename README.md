@@ -1,3 +1,4 @@
+
 **Physical activity calculater during running using the GPS data**
 
 In this program, we provide the estimation methods for the physical activity during locomotion without distinguishing between running and walking based on the GPS data.
@@ -74,3 +75,39 @@ def getAltitude(Latitude, Longitude):
 
 Network errors may interrupt the programme.
 Increasing the value of `retries = 5` would solve it.
+
+> **Calculate the physical activities**
+
+STEP1: Estimating the METs from walking and/or running speed (Fig.1)
+
+```python
+  for i in trange(0, Velocity.size):
+        ### STEP1: Velocity ###################################################################################
+        """
+        Relationship between Velocity(km/h) x METs
+          y = 0.9638 * X - 0.191
+        Relationship between Velocity(km/h) x VO2
+          y = 3.3731 * X - 0.6684
+        """
+
+        def Velocity_METs(Velocity):
+            # Regression equation fractionated at low and high speed, 
+            # speed intersected is set at 8.689214 km/h from the relationship between lnMETs and running speed.
+            if Velocity < 8.689214: 
+                a = 0.2245
+                b = 0.2544
+                LnMETs = (a * Velocity + b)
+                METs = np.exp(LnMETs)
+            else: 
+                a = 0.0654
+                b = 1.6367
+                LnMETs = (a * Velocity + b)
+                METs = np.exp(LnMETs)
+            return float(METs)
+```
+
+![LnMETs-Speed相関関係](https://github.com/KH-SPORTSBIOMECH/HYPAC-Physical-Activity-Calculator/assets/92411916/6dd928b4-858c-4e4d-aa68-f77afbdd843f)
+Fig.1 The relationship between ln(METs) and walking and/or running speed
+The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 when the speed is 8.69 km/h.
+The regression equation for the approximate curve below 8.69 km/h speed was **ln(METs) = 0.2245 * speed + 0.2544**.
+The coefficient of determination was R2 = 0.98.
