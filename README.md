@@ -99,13 +99,7 @@ def Velocity_METs(Velocity):
 
 **Fig.1 The relationship between ln(METs) and walking and/or running speed**
 
--The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 when the speed is 8.69 km/h.
-
--The regression equation for the approximate curve below 8.69 km/h speed (grey) was `ln(METs) = 0.2245 x speed + 0.2544`.
-The coefficient of determination was R2 = 0.98.
-
--The regression equation for the approximate curve over 8.69 km/h speed (black) was `ln(METs) = 0.0654 x speed + 1.6367`.
-The coefficient of determination was R2 = 0.99.
+The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 when the speed is 8.69 km/h. The regression equation for the approximate curve below 8.69 km/h speed (grey) was `ln(METs) = 0.2245 x speed + 0.2544`. The coefficient of determination was R2 = 0.98. The regression equation for the approximate curve over 8.69 km/h speed (black) was `ln(METs) = 0.0654 x speed + 1.6367`. The coefficient of determination was R2 = 0.99.
 
 *ln(): the natural logarithm
 
