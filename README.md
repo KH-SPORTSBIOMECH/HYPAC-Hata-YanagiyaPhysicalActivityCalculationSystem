@@ -105,7 +105,7 @@ The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 whe
 
 ## > **Considering the grade in the course**
 
-STEP1: Estimating the METs from walking and/or running speed (Fig.1)
+STEP2: Calibration of the physical activity by the grade factor.
 
 ```python
 def VO2_GRADE(GRADE):
@@ -126,7 +126,6 @@ def VO2_GRADE(GRADE):
 ```
 
 **Fig.2 The relationship between oxygen consumption (Cost) and grade**
-
 
 The quadratic regression equation was **Cost = 13.6524・10-4 ・grade + 5.1921・10-2+1** and the coefficient of determination was R2 = 0.99. This equation was abtained based on the [Minetti et al., 2002](https://journals.physiology.org/doi/full/10.1152/japplphysiol.01177.2001).
 
