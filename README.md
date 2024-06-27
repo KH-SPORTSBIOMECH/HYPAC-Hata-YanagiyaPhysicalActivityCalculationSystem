@@ -103,14 +103,32 @@ The regression equations 1 (gray) and 2 (black) intersect at ln(METs) = 2.21 whe
 
 *ln(): the natural logarithm
 
+## > **Considering the grade in the course**
+
+STEP1: Estimating the METs from walking and/or running speed (Fig.1)
+
+```python
+def VO2_GRADE(GRADE):
+    a = 0.00136524
+    b = 0.051921
+    c = 1
+            
+    VO2_GRADE = a * GRADE**2 + b * GRADE + c
+    VO2_GRADE0 = a * 0**2 + b * 0 + c
+            
+    VO2rate_GRADE = VO2_GRADE / VO2_GRADE0
+            
+    VO2_GRADE = pd.DataFrame({"Grade": GRADE,
+                              "VO2": VO2_GRADE,
+                              "VO2 rate": VO2rate_GRADE
+                              })
+    return VO2_GRADE
+```
+
+**Fig.2 The relationship between oxygen consumption (Cost) and grade**
 
 
-
-
-
-
-
-
+The quadratic regression equation was **Cost = 13.6524・10-4 ・grade + 5.1921・10-2+1** and the coefficient of determination was R2 = 0.99. This equation was abtained based on the [Minetti et al., 2002](https://journals.physiology.org/doi/full/10.1152/japplphysiol.01177.2001).
 
 
 
