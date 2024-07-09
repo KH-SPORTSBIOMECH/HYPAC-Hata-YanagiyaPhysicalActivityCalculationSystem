@@ -127,7 +127,7 @@ def VO2_GRADE(GRADE):
 
 **Fig.2 The relationship between oxygen consumption (Cost) and grade**
 
-The quadratic regression equation was **Cost = 13.6524・10-4 ・grade + 5.1921・10-2+1** and the coefficient of determination was R2 = 0.99. This equation was abtained based on the [Minetti et al., 2002](https://journals.physiology.org/doi/full/10.1152/japplphysiol.01177.2001).
+The quadratic regression equation was **Cost = 13.6524・10<sup>-4</sup> ・grade + 5.1921・10<sup>-2</sup> +1** and the coefficient of determination was R2 = 0.99. This equation was abtained based on the [Minetti et al., 2002](https://journals.physiology.org/doi/full/10.1152/japplphysiol.01177.2001).
 
 ## > **Calcurating the VO2 and Energy expenditure**
 
@@ -140,8 +140,6 @@ VO2 = METs * REE #(mL/min/kg)
  ```python
 EnergyExpenditure = VO2 * HEAT * dTime #(METs*hr)
 ```
-
-`HEAT` indicates the resting energy expenditure and is set at 3.5 in default.
 
 `HEAT` indicates the heat production (kcal) and is set at 4.85 in default.
 
