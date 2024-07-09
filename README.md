@@ -3,7 +3,7 @@
 
 In this program, we provide the estimation methods for the physical activity during locomotion without distinguishing between running and walking based on the GPS data.
 It needs a .fit file of walking and/or running. The .fit file is the activity data and can be obtained from some of the smart watch such as Garmin, Caros and something.
-Use the sample.fit data and try this code.
+Use the sample.fit data and try this code!
 
 # Usage
 ## > **Import .fit data**
