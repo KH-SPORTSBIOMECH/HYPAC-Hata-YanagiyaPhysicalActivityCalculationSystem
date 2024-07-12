@@ -167,4 +167,4 @@ mymap.save('/content/sample_data/map_VO2.html')
 
 **Fig.3 Grapical result for physical activity during running**
 
-The 
+The trajectory indicates the running route, and the red and green colours indicate a higher VO2 and a lower VO2 respectively.
