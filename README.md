@@ -163,5 +163,7 @@ mymap.save('/content/sample_data/map_VO2.html')
 
 ```
 
+![map](https://github.com/user-attachments/assets/8728c5c9-9e95-40b6-8814-93164b1239e1)
 
-.
+**Fig.3 Grapical result for physical activity during running**
+
