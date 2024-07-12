@@ -147,8 +147,21 @@ EnergyExpenditure = VO2 * HEAT * dTime #(METs*hr)
 `HEAT` indicates the heat production (kcal) and is set at 4.85 in default.
 
 
+## > **Graphical result output**
 
+In this code you can get the graphical result of the physical activity according to your running course (Fig. 3).
 
+```python
+
+map_center = [GPS_dataset["Latitude"].loc[1], GPS_dataset["Longitude"].loc[1]]
+
+mymap = folium.Map(location=map_center, zoom_start=15.5)
+
+HeatMap(list(zip(GPS_dataset["Latitude"], GPS_dataset["Longitude"], GPS_RESULTS["VO2(mL/min/kg)"])), radius=10, blur=10).add_to(mymap)
+
+mymap.save('/content/sample_data/map_VO2.html')
+
+```
 
 
 .
