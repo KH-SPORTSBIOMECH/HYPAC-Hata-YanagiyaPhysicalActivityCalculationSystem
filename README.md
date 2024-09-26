@@ -1,5 +1,5 @@
 
-# **Physical activity calculater during walking and running based on the GPS data**
+# **HYPAC: Hata-Yanagiya Physical activity calculation system during walking and running based on the GPS data**
 
 In this program, we provide the estimation methods for the physical activity during locomotion without distinguishing between running and walking based on the GPS data.
 It needs a .fit file of walking and/or running. The .fit file is the activity data and can be obtained from some of the smart watch such as Garmin, Caros and something.
